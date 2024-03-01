@@ -1,5 +1,6 @@
 import * as z from 'zod';
 
+//types for input fields
 export type JobType = {
   id: string;
   createdAt: Date;
@@ -12,12 +13,13 @@ export type JobType = {
   mode: string;
 };
 
+//types for the select of job status
 export enum JobStatus {
   Pending = 'pending',
   Interview = 'interview',
   Declined = 'declined'
 }
-
+//types for the select of job mode
 export enum JobMode {
   FullTime = 'full-time',
   PartTime = 'part-time',
@@ -25,6 +27,7 @@ export enum JobMode {
 }
 // Enums in TypeScript are a special type that allows you to define a set of named constants. They can be numeric or string-based.
 
+//create zod schemas
 export const createAndEditJobSchema = z.object({
   position: z.string().min(2, {
     message: 'position must be at least 2 characters.'
