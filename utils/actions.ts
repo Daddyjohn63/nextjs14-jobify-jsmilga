@@ -23,6 +23,8 @@ export async function createJobAction(
   await new Promise(resolve => setTimeout(resolve, 3000));
   const userId = authenticateAndRedirect();
   try {
+    // const test = createAndEditJobSchema.parse(values);
+    // console.log('TRY BLOCK PARSED VALUES', test); //NOTHING SEEN IN CONSOLE.
     createAndEditJobSchema.parse(values); //zod parse for server validation
 
     const job: JobType = await prisma.job.create({
