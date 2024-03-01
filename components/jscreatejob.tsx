@@ -1,9 +1,10 @@
+//smilga
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-//import types and zod schema we created from utils.
 import {
   JobStatus,
   JobMode,
@@ -14,7 +15,6 @@ import {
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 
-//get our custom forms
 import { CustomFormField, CustomFormSelect } from './FormComponents';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -23,7 +23,6 @@ import { useToast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 
 function CreateJobForm() {
-  // 1. Define your form.
   const form = useForm<CreateAndEditJobType>({
     resolver: zodResolver(createAndEditJobSchema),
     defaultValues: {
@@ -49,18 +48,14 @@ function CreateJobForm() {
       queryClient.invalidateQueries({ queryKey: ['jobs'] });
       queryClient.invalidateQueries({ queryKey: ['stats'] });
       queryClient.invalidateQueries({ queryKey: ['charts'] });
-      //form.reset()
+      // form.reset()
       router.push('/jobs');
     }
   });
 
   function onSubmit(values: CreateAndEditJobType) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log('FORM VALUES FROM CLIENT', values);
     mutate(values);
   }
-
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="bg-muted p-8 rounded">
@@ -72,7 +67,6 @@ function CreateJobForm() {
           <CustomFormField name="company" control={form.control} />
           {/* location */}
           <CustomFormField name="location" control={form.control} />
-
           {/* job status */}
           <CustomFormSelect
             name="status"
@@ -80,14 +74,13 @@ function CreateJobForm() {
             labelText="job status"
             items={Object.values(JobStatus)}
           />
-          {/* job  type */}
+          {/* job mode */}
           <CustomFormSelect
             name="mode"
             control={form.control}
             labelText="job mode"
             items={Object.values(JobMode)}
           />
-
           <Button type="submit" className="self-end capitalize" disabled={isPending}>
             {isPending ? 'loading' : 'create job'}
           </Button>

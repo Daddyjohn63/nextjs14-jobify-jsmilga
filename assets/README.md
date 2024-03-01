@@ -1,5 +1,7 @@
 # Jobify
 
+https://github.com/john-smilga/nextjs-course-openai/blob/main/03-jobify/app/(dashboard)/layout.tsx
+
 ## Create New Next.js Project
 
 ```sh
