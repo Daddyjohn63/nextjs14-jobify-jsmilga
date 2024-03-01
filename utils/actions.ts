@@ -8,8 +8,12 @@ import dayjs from 'dayjs';
 
 function authenticateAndRedirect(): string {
   const { userId } = auth();
-  if (!userId) redirect('/');
+  console.log('USER ID FROM CLERK', { userId });
   console.log('USER ID FROM CLERK', userId);
+  if (!userId) {
+    return redirect('/');
+  }
+
   return userId;
 }
 
