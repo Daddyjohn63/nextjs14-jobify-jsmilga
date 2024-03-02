@@ -22,10 +22,13 @@ export async function createJobAction(
   console.log('Received values:', values); // Log the received values (confirmED I can see them)
   await new Promise(resolve => setTimeout(resolve, 3000));
   const userId = authenticateAndRedirect();
+  if (userId) {
+    console.log('Authentication successful');
+  }
   try {
     // const test = createAndEditJobSchema.parse(values);
     // console.log('TRY BLOCK PARSED VALUES', test); //NOTHING SEEN IN CONSOLE.
-    createAndEditJobSchema.parse(values); //zod parse for server validation
+    //createAndEditJobSchema.parse(values); //zod parse for server validation
 
     const job: JobType = await prisma.job.create({
       data: {
