@@ -23,9 +23,12 @@ function SearchForm() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    //get the values from the form
     const search = formData.get('search') as string;
     const jobStatus = formData.get('jobStatus') as string;
     // console.log(search, jobStatus);
+
+    //create the params, which will be used in JobsList.tsx
     let params = new URLSearchParams();
     params.set('search', search);
     params.set('jobStatus', jobStatus);
